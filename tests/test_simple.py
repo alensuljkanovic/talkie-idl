@@ -34,3 +34,12 @@ def test_duplicates():
                         "duplicates.tl")
     with pytest.raises(Exception):
         metamodel.model_from_file(path)
+
+
+def test_typhoon_api():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "typhoon_example.tl")
+    print(path)
+    package = metamodel.model_from_file(path)
+    print("")

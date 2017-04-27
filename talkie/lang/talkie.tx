@@ -1,31 +1,72 @@
+Package:
+    'package' name=ID 'version' '=' version=PackageVersion
+
+   items*=PackageItem
+
+;
+
+PackageItem:
+    TypeDef|Interface
+;
+
+
+PackageVersion:
+    INT ('.' INT)*
+;
+
+DataType:
+    BasicType | ContainerType | ID
+;
+
+TypeDef:
+    'typedef' name=ID '['
+        fields+=TypeField
+    ']'
+;
+
+TypeField:
+    (id=INT ':')? type=DataType name=ID
+;
+
 Interface:
-    'interface' name=ID '{'
-        endpoints+=EndPoint
+    'interface' name=ID '['
         functions+=Function
-    '}'
-;
-
-EndPoint:
-    'endpoint' (name=ID)? '{'
-        'ip' ':' ip=STRING ','
-        'port' ':' port=INT ','
-        'lang' ':' lang=ID ','
-        'role' ':' role=Role
-    '}'
-;
-
-Role:
-    "client" | "server"
+    ']'
 ;
 
 Function:
-    ret_type=Type name=ID '(' params*=FunctionParameter[','] ')'
+    'def' name=ID '(' params*=FunctionParameter[','] ')'
 ;
 
 FunctionParameter:
-    p_type=Type p_name=ID
+    p_type=DataType (p_modifier=ParameterModifier)? p_name=ID ('='default=DefaultValue)?
 ;
 
-Type:
-    "void" | "string" | "int" | "float" | "double" | "bool"
+
+DefaultValue:
+    'None' | STRING | NUMBER
+;
+
+ParameterModifier:
+    '**' | '*'
+;
+
+BasicType:
+    "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "str" | "blob"
+;
+
+ContainerType:
+    SetType | ListType | DictType
+;
+
+SetType:
+    'set' '<' type=DataType '>'
+;
+
+ListType:
+    'list' '<' type=DataType '>' ('[' len=INT ']')?
+;
+
+DictType:
+    'dict' '<' key_type=DataType ',' value_type=DataType '>'
 ;
