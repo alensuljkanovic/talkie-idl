@@ -13,6 +13,20 @@ def test_complex_types():
     metamodel.model_from_file(path)
 
 
+def test_interface_inheritance():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "interface_inheritance.tl")
+    metamodel.model_from_file(path)
+
+
+def test_type_inheritance():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "typedef_inheritance.tl")
+    metamodel.model_from_file(path)
+
+
 def test_typhoon_api():
     metamodel = get_metamodel()
     path = os.path.join(get_root_path(), "tests", "examples",

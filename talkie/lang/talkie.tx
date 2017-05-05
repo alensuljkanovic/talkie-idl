@@ -16,7 +16,7 @@ PackageVersion:
 
 
 TypeDef:
-    'typedef' name=ID '['
+    'typedef' name=ID (':' inherits+=[TypeDef][','])? '['
         fields+=TypeField
     ']'
 ;
@@ -26,7 +26,7 @@ TypeField:
 ;
 
 Interface:
-    'interface' name=ID '['
+    'interface' name=ID (':' inherits+=[Interface][','])?'['
         functions+=Function
     ']'
 ;
