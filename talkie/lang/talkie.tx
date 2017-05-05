@@ -14,9 +14,6 @@ PackageVersion:
     INT ('.' INT)*
 ;
 
-DataType:
-    BasicType | ContainerType | ID
-;
 
 TypeDef:
     'typedef' name=ID '['
@@ -39,7 +36,7 @@ Function:
 ;
 
 FunctionParameter:
-    p_type=DataType (p_modifier=ParameterModifier)? p_name=ID ('='default=DefaultValue)?
+    type=DataType (p_modifier=ParameterModifier)? name=ID ('='default=DefaultValue)?
 ;
 
 
@@ -51,22 +48,70 @@ ParameterModifier:
     '**' | '*'
 ;
 
-BasicType:
-    "bool" | "byte" | "i16" | "i32" | "i64" | "double" | "str" | "blob"
+DataType:
+    Number | Collection | CustomType
 ;
 
-ContainerType:
-    SetType | ListType | DictType
+CustomType:
+    type=[TypeDef]
 ;
 
-SetType:
-    'set' '<' type=DataType '>'
+Number:
+    Integer | Float
 ;
 
-ListType:
+Integer:
+    'i16' | 'i32' | 'i64'
+;
+
+Float:
+    'float' | 'double'
+;
+
+Collection:
+    Sequence | Set | Dict
+;
+
+Sequence:
+    String | List
+;
+
+String:
+    'str'
+;
+
+List:
+    TypedList | NonTypedList
+;
+
+TypedList:
     'list' '<' type=DataType '>' ('[' len=INT ']')?
 ;
 
-DictType:
+NonTypedList:
+    'list'
+;
+
+Set:
+    TypedSet | NonTypedSet
+;
+
+TypedSet:
+    'set' '<' type=DataType '>'
+;
+
+NonTypedSet:
+    'set'
+;
+
+Dict:
+    TypedDict | NonTypedDict
+;
+
+TypedDict:
     'dict' '<' key_type=DataType ',' value_type=DataType '>'
+;
+
+NonTypedDict:
+    'dict'
 ;
