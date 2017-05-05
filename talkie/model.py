@@ -11,7 +11,7 @@ class TalkieObject(object):
 
 
 class Package(TalkieObject):
-
+    """Object representation of a package defined by talkie DSL."""
     def __init__(self, name, version, items=None):
         super(Package, self).__init__(None)
         self.name = name

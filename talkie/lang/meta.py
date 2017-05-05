@@ -1,6 +1,6 @@
 import os
 from textx.metamodel import metamodel_from_file
-from talkie.talkie import Package, Interface, Function, FunctionParameter
+from talkie.model import Package, Interface, Function, FunctionParameter
 from talkie.utils import get_root_path
 
 _classes = (Package, Interface, Function, FunctionParameter)
