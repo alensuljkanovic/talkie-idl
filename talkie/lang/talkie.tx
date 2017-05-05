@@ -41,7 +41,7 @@ FunctionParameter:
 
 
 DefaultValue:
-    'None' | STRING | NUMBER
+    'None' | STRING | FLOAT | INT | BOOL
 ;
 
 ParameterModifier:
@@ -61,7 +61,7 @@ Number:
 ;
 
 Integer:
-    'i16' | 'i32' | 'i64'
+    'i16' | 'i32' | 'i64' | 'bool'
 ;
 
 Float:

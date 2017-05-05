@@ -20,3 +20,11 @@ def test_typhoon_api():
 
     metamodel.model_from_file(path)
 
+
+def test_typhoon_hil_api():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "typhoon_hil_api.tl")
+
+    metamodel.model_from_file(path)
+
