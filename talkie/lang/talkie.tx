@@ -36,7 +36,7 @@ Function:
 ;
 
 FunctionParameter:
-    type=DataType (p_modifier=ParameterModifier)? name=ID ('='default=DefaultValue)?
+    type=DataType (modifier=ParameterModifier)? name=ID ('='default=DefaultValue)?
 ;
 
 

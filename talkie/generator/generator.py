@@ -51,7 +51,8 @@ class TalkieGenerator(object):
             func_dict["parameters"] = params_str
             func_dict["params"] = params
             func_dict["param_names"] = ", ".join(param_names)
-            func_dict["def_ret_val"] = platforms.get_def_ret_val(platform, function.ret_type)
+            func_dict["def_ret_val"] = platforms.get_def_ret_val(
+                platform, function.ret_type)
             d["functions"].append(func_dict)
 
         return d
@@ -96,9 +97,9 @@ class TalkieGenerator(object):
                     # Init file doesn't exist for this platform.
                     pass
                 except IOError:
-                    raise Exception("Failed to create init file for "
-                                    "'{endpoint}'".format(
-                        endpoint=endpoint.name))
+                    raise Exception(
+                        "Failed to create init file for "
+                        "'{endpoint}'".format(endpoint=endpoint.name))
             except OSError:
                 raise Exception("Failed to make directory for '%s'"
                                 % endpoint.name)

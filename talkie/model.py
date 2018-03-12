@@ -23,10 +23,11 @@ class Package(TalkieObject):
 
 class Interface(TalkieObject):
     """Object representation of an interface defined by talkie DSL."""
-    def __init__(self, name, parent=None, functions=None):
+    def __init__(self, name, parent=None, inherits=None, functions=None):
         """Initializes Interface object."""
         super(Interface, self).__init__(parent)
         self.name = name
+        self.inherits = inherits if inherits else []
         self.functions = functions if functions else []
 
 
@@ -46,9 +47,9 @@ class Function(TalkieObject):
 
 class FunctionParameter(TalkieObject):
     """Object representation of a function param defined by talkie DSL."""
-    def __init__(self, parent, p_name, p_type, p_modifier, default=None):
+    def __init__(self, parent, name, type, modifier, default=None):
         super(FunctionParameter, self).__init__(parent)
-        self.p_name = p_name
-        self.p_modifier = p_modifier
-        self.p_type = p_type
+        self.name = name
+        self.modifier = modifier
+        self.type = type
         self.default = default
