@@ -42,3 +42,18 @@ def test_typhoon_hil_api():
 
     metamodel.model_from_file(path)
 
+
+def test_fsa_example():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "fsa_example.tl")
+
+    metamodel.model_from_file(path)
+
+
+def test_fsa_example2():
+    metamodel = get_metamodel()
+    path = os.path.join(get_root_path(), "tests", "examples",
+                        "fsa_example2.tl")
+
+    metamodel.model_from_file(path)

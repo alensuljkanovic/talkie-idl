@@ -28,6 +28,8 @@ TypeField:
 Interface:
     'interface' name=ID (':' inherits+=[Interface][','])?'['
         functions+=Function
+
+        fsa=FiniteStateAutomata?
     ']'
 ;
 
@@ -115,3 +117,37 @@ TypedDict:
 NonTypedDict:
     'dict'
 ;
+
+//
+// Rules for Finite State Automata
+//
+FiniteStateAutomata:
+    'fsa' '['
+        'start' start_state=[State]
+        ('finish' finish_state=[State])?
+        states+=State
+
+    ']'
+;
+
+State:
+'state' name=ID (code=ID)? ':'
+    ('(' actions+=ID[','] ')')?
+    transitions+=Transition
+;
+
+
+Transition:
+    'on' events+=Event['or'] 'goto' target=[State]
+;
+
+Event:
+    ('timer' '(' timer=INT ')') | name=ID
+;
+
+
+// Special rule for comments
+Comment:
+  /\/\/.*$/|/\/\*(.|\n)*?\*\//  // Non-greedy match of block component content
+;
+
